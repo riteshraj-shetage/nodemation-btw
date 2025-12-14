@@ -19,9 +19,9 @@ if [ ! -f ".env" ]; then
   exit 1
 fi
 
-# 3. Check compose.yaml file exists
-if [ ! -f "compose.yaml" ]; then
-  echo "Error: compose.yaml file is missing in $N8N_COMPOSE_DIR"
+# 3. Check compose.yml file exists
+if [ ! -f "compose.yml" ]; then
+  echo "Error: compose.yml file is missing in $N8N_COMPOSE_DIR"
   exit 1
 fi
 
