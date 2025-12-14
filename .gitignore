@@ -1,8 +1,8 @@
 # Environment & secrets
 .env
+auth/.htpasswd 
 
-# Volumes & runtime data
-volumes/
+# Runtime data
 local-files/*-tmp/
 *.log
 
