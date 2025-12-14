@@ -1,0 +1,11 @@
+# Environment & secrets
+.env
+
+# Volumes & runtime data
+volumes/
+local-files/*-tmp/
+*.log
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
