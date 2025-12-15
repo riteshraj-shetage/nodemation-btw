@@ -12,8 +12,8 @@ Minimal setup to run n8n with Traefik reverse proxy and Basic Auth on Ubuntu 24.
 
 1. Clone and navigate:
    ```bash
-   git clone https://github.com/riteshraj-shetage/n8n-test.git
-   cd n8n-test/n8n-compose
+   git clone https://github.com/riteshraj-shetage/n8n-compose.git
+   cd n8n-compose
    ```
 
 2. Run setup:
