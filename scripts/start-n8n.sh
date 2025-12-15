@@ -1,38 +1,24 @@
 #!/bin/bash
 set -euo pipefail
 
-echo "Starting n8n with validation checks..."
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 
-N8N_COMPOSE_DIR="$HOME/n8n-compose"
+cd "$PROJECT_DIR"
 
-# 1. Check project directory exists
-if [ ! -d "$N8N_COMPOSE_DIR" ]; then
-  echo "Error: $N8N_COMPOSE_DIR does not exist. Run the setup script first."
-  exit 1
-fi
+[ -f "compose.yml" ] || { echo "Error: compose.yml not found"; exit 1; }
+[ -f ".env" ] || { echo "Error: .env not found"; exit 1; }
+[ -f "auth/.htpasswd" ] || { echo "Error: auth/.htpasswd not found"; exit 1; }
 
-cd "$N8N_COMPOSE_DIR"
+set -a
+source .env
+set +a
 
-# 2. Check .env file exists
-if [ ! -f ".env" ]; then
-  echo "Error: .env file is missing in $N8N_COMPOSE_DIR"
-  exit 1
-fi
+[ -z "$DOMAIN_NAME" ] && { echo "Error: DOMAIN_NAME not set"; exit 1; }
+[ -z "$SUBDOMAIN" ] && { echo "Error: SUBDOMAIN not set"; exit 1; }
+[ -z "$SSL_EMAIL" ] && { echo "Error: SSL_EMAIL not set"; exit 1; }
 
-# 3. Check compose.yml file exists
-if [ ! -f "compose.yml" ]; then
-  echo "Error: compose.yml file is missing in $N8N_COMPOSE_DIR"
-  exit 1
-fi
-
-# 4. Check Basic Auth file exists
-if [ ! -f "auth/.htpasswd" ]; then
-  echo "Error: auth/.htpasswd file is missing. Run htpasswd to create credentials."
-  exit 1
-fi
-
-# 5. Run docker compose
-echo "Validation passed. Starting n8n..."
 docker compose up -d
 
-echo "n8n is starting. Use 'docker compose logs -f' to monitor startup."
+echo "n8n is starting at https://${SUBDOMAIN}.${DOMAIN_NAME}"
+echo "Monitor logs: docker compose logs -f"
