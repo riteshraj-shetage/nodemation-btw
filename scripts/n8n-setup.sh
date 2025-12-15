@@ -1,44 +1,44 @@
+
 #!/bin/bash
 set -euo pipefail
 
-echo "Setting up n8n self-hosting with Basic Auth..."
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 
-# 1. Update system
-sudo apt update && sudo apt upgrade -y
-
-# 2. Install prerequisites
+sudo apt-get update
+sudo apt-get upgrade -y
 sudo apt-get install -y ca-certificates curl gnupg apache2-utils
 
-# 3. Add Docker’s official GPG key and repo
 sudo install -m 0755 -d /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+
 echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
-# 4. Install Docker Engine + Compose plugin
 sudo apt-get update
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
-# 5. Enable Docker service
 sudo systemctl enable --now docker
 
-# 6. Verify installation
 docker --version
-docker compose version   # note: v2 uses `docker compose` (space)
+docker compose version
 
-# 7. Allow current user to run docker without sudo
 sudo usermod -aG docker "${USER}"
-newgrp docker
 
-# 8. Create project directories
-mkdir -p ~/n8n-compose/local-files ~/n8n-compose/auth
-cd ~/n8n-compose
+if [ ! -f "$PROJECT_DIR/.env" ]; then
+  cp "$PROJECT_DIR/.env.example" "$PROJECT_DIR/.env"
+fi
 
-# 9. Reminder: copy your .env and compose.yaml into this directory
-echo "Place your .env and compose.yaml files in ~/n8n-compose"
+mkdir -p "$PROJECT_DIR/auth" "$PROJECT_DIR/local-files"
 
-# 10. Create Basic Auth credentials
-htpasswd -c ./auth/.htpasswd admin
+if [ ! -f "$PROJECT_DIR/auth/.htpasswd" ]; then
+  htpasswd -c "$PROJECT_DIR/auth/.htpasswd" admin
+fi
 
-echo "Setup complete."
+touch "$PROJECT_DIR/local-files/.gitkeep"
+
+echo "Setup complete. Edit $PROJECT_DIR/.env and then run: bash $PROJECT_DIR/scripts/start-n8n.sh"
+echo "Note: Log out and back in for docker group changes to take effect."
