@@ -9,7 +9,8 @@ services:
       - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
       - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
       - "--entrypoints.websecure.address=:443"
-      - "--certificatesresolvers.mytlschallenge.acme.tlschallenge=true"
+      - "--certificatesresolvers.mytlschallenge.acme.httpchallenge=true"
+      - "--certificatesresolvers.mytlschallenge.acme.httpchallenge.entrypoint=web"
       - "--certificatesresolvers.mytlschallenge.acme.email=${SSL_EMAIL}"
       - "--certificatesresolvers.mytlschallenge.acme.storage=/letsencrypt/acme.json"
     ports:
@@ -21,30 +22,23 @@ services:
       - ./auth:/auth:ro
     networks:
       - n8n-network
-    healthcheck:
-      test: ["CMD", "traefik", "healthcheck", "--ping"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
 
   n8n:
     image: docker.n8n.io/n8nio/n8n:latest
     restart: always
     labels:
-      - traefik.enable=true
-      - traefik.http.routers.n8n.rule=Host(`${SUBDOMAIN}.${DOMAIN_NAME}`)
-      - traefik.http.routers.n8n.entrypoints=websecure
-      - traefik.http.routers.n8n.tls.certresolver=mytlschallenge
-      - traefik.http.middlewares.n8n-auth.basicauth.usersfile=/auth/.htpasswd
-      - traefik.http.middlewares.n8n-headers.headers.stsSeconds=31536000
-      - traefik.http.middlewares.n8n-headers.headers.stsIncludeSubdomains=true
-      - traefik.http.routers.n8n.middlewares=n8n-auth@docker,n8n-headers@docker
+      - "traefik.enable=true"
+      - "traefik.http.routers.n8n.rule=Host(`n8n.${DOMAIN_NAME}`)"
+      - "traefik.http.routers.n8n.entrypoints=websecure"
+      - "traefik.http.routers.n8n.tls.certresolver=mytlschallenge"
+      - "traefik.http.services.n8n.loadbalancer.server.port=5678"
+      - "traefik.http.middlewares.n8n-headers.headers.stsSeconds=31536000"
+      - "traefik.http.middlewares.n8n-headers.headers.stsIncludeSubdomains=true"
     environment:
-      - N8N_HOST=${SUBDOMAIN}.${DOMAIN_NAME}
+      - N8N_HOST=n8n.${DOMAIN_NAME}
       - N8N_PORT=5678
       - N8N_PROTOCOL=https
-      - WEBHOOK_URL=https://${SUBDOMAIN}.${DOMAIN_NAME}/
+      - WEBHOOK_URL=https://n8n.${DOMAIN_NAME}/
       - GENERIC_TIMEZONE=${GENERIC_TIMEZONE}
       - TZ=${GENERIC_TIMEZONE}
     volumes:
@@ -53,8 +47,7 @@ services:
     networks:
       - n8n-network
     depends_on:
-      traefik:
-        condition: service_healthy
+      - traefik
     healthcheck:
       test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:5678/healthz || exit 1"]
       interval: 30s
