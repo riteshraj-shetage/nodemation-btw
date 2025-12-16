@@ -21,4 +21,3 @@ set +a
 docker compose up -d
 
 echo "n8n is starting at https://${SUBDOMAIN}.${DOMAIN_NAME}"
-echo "Monitor logs: docker compose logs -f"
