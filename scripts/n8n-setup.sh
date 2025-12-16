@@ -1,4 +1,3 @@
-
 #!/bin/bash
 set -euo pipefail
 
@@ -40,5 +39,4 @@ fi
 
 touch "$PROJECT_DIR/local-files/.gitkeep"
 
-echo "Setup complete. Edit $PROJECT_DIR/.env and then run: bash $PROJECT_DIR/scripts/start-n8n.sh"
-echo "Note: Log out and back in for docker group changes to take effect."
+echo "Setup complete.
