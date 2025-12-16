@@ -32,6 +32,4 @@ fi
 
 mkdir -p "$PROJECT_DIR/local-files"
 
-touch "$PROJECT_DIR/local-files/.gitkeep"
-
 echo "Setup complete.
