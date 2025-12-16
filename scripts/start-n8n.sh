@@ -8,7 +8,6 @@ cd "$PROJECT_DIR"
 
 [ -f "compose.yml" ] || { echo "Error: compose.yml not found"; exit 1; }
 [ -f ".env" ] || { echo "Error: .env not found"; exit 1; }
-[ -f "auth/.htpasswd" ] || { echo "Error: auth/.htpasswd not found"; exit 1; }
 
 set -a
 source .env
