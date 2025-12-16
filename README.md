@@ -1,6 +1,6 @@
 # n8n-compose
 
-Minimal setup to run n8n with Traefik reverse proxy and Basic Auth on Ubuntu 24.04.
+Minimal setup to run n8n using Docker Compose on Ubuntu 24.04.
 
 ## Prerequisites
 
@@ -18,7 +18,7 @@ Minimal setup to run n8n with Traefik reverse proxy and Basic Auth on Ubuntu 24.
 
 2. Run setup:
    ```bash
-   bash scripts/n8n-setup.sh
+   bash scripts/setup-n8n.sh
    ```
 
 3. Configure environment:
@@ -52,6 +52,5 @@ docker compose pull && docker compose up -d
 
 ## Notes
 
-- Basic Auth credentials in `auth/.htpasswd`
 - Workflows and data in Docker volumes (`n8n_data`, `traefik_data`)
 - SSL certificates managed automatically by Traefik
