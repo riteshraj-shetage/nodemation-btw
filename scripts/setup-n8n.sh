@@ -4,8 +4,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 
-sudo apt-get update
-sudo apt-get upgrade -y
+sudo apt-get update && sudo apt-get upgrade -y
 sudo apt-get install -y ca-certificates curl gnupg apache2-utils
 
 sudo install -m 0755 -d /etc/apt/keyrings
@@ -31,11 +30,7 @@ if [ ! -f "$PROJECT_DIR/.env" ]; then
   cp "$PROJECT_DIR/.env.example" "$PROJECT_DIR/.env"
 fi
 
-mkdir -p "$PROJECT_DIR/auth" "$PROJECT_DIR/local-files"
-
-if [ ! -f "$PROJECT_DIR/auth/.htpasswd" ]; then
-  htpasswd -c "$PROJECT_DIR/auth/.htpasswd" admin
-fi
+mkdir -p "$PROJECT_DIR/local-files"
 
 touch "$PROJECT_DIR/local-files/.gitkeep"
 
