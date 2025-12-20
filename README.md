@@ -49,8 +49,3 @@ docker compose logs -f
 # Update
 docker compose pull && docker compose up -d
 ```
-
-## Notes
-
-- Workflows and data in Docker volumes (`n8n_data`, `traefik_data`)
-- SSL certificates managed automatically by Traefik
