@@ -34,6 +34,14 @@ Minimal setup to run n8n using Docker Compose on Ubuntu 24.04.
 
 5. Access at `https://<SUBDOMAIN>.<DOMAIN_NAME>`
 
+## Demo
+
+### Importing a Template
+<img src="docs/import-template.gif" alt="Import Template Demo" width="600"/>
+
+### Executing a Workflow
+<img src="docs/execute-workflow.gif" alt="Execute Workflow Demo" width="600"/>
+
 ## Commands
 
 ```bash
