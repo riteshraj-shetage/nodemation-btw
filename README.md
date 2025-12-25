@@ -2,37 +2,60 @@
 
 Minimal setup to run n8n using Docker Compose on Ubuntu 24.04.
 
-## Prerequisites
+## Prerequisites Checklist
 
-- Ubuntu Server 24.04
-- Domain with DNS pointing to your server's IP
-- Ports 80 and 443 open
+- [ ] AWS EC2 instance running Ubuntu 24.04 LTS
+- [ ] Security group with ports 80 and 443 open
+- [ ] Domain name with DNS A record pointing to your EC2 IP
+- [ ] SSH access to your EC2 instance
 
-## Setup
+## Step-by-Step Installation
 
-1. Clone and navigate:
-   ```bash
-   git clone https://github.com/riteshraj-shetage/n8n-compose.git
-   cd n8n-compose
-   ```
+### 1. Connect to Your EC2 Instance
 
-2. Run setup:
-   ```bash
-   bash scripts/setup-n8n.sh
-   ```
+```bash
+ssh -i your-key.pem ubuntu@<your-ec2-public-ip>
+```
 
-3. Configure environment:
-   ```bash
-   nano .env
-   ```
-   Update: `DOMAIN_NAME`, `SUBDOMAIN`, `SSL_EMAIL`, `GENERIC_TIMEZONE`
+### 2. Clone the Repository
 
-4. Start n8n:
-   ```bash
-   bash scripts/start-n8n.sh
-   ```
+```bash
+git clone https://github.com/riteshraj-shetage/n8n-compose.git
+cd ~/n8n-compose
+```
 
-5. Access at `https://<SUBDOMAIN>.<DOMAIN_NAME>`
+### 3. Run the Setup Script
+
+```bash
+bash scripts/setup-n8n.sh
+```
+
+### 4. Configure Your Environment
+
+```bash
+nano .env
+```
+
+**Update these values:**
+```env
+DOMAIN_NAME=example.com        
+SUBDOMAIN=n8n                    
+SSL_EMAIL=your_email  
+GENERIC_TIMEZONE=UTC    
+```
+
+### 5. Start n8n
+
+```bash
+bash scripts/start-n8n.sh
+```
+
+### 6. Access n8n
+
+Open your browser and go to:
+```
+https://<SUBDOMAIN>.<DOMAIN_NAME>
+```
 
 ## Demo
 
@@ -42,7 +65,7 @@ Minimal setup to run n8n using Docker Compose on Ubuntu 24.04.
 ### Executing a Workflow
 <img src="docs/execute-workflow.gif" alt="Execute Workflow Demo" width="600"/>
 
-## Commands
+## Useful Commands
 
 ```bash
 # Start
