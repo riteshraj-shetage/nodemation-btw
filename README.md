@@ -60,10 +60,10 @@ https://<SUBDOMAIN>.<DOMAIN_NAME>
 ## Demo
 
 ### Importing a Template
-<img src="docs/import-template.gif" alt="Import Template Demo" width="600"/>
+<video src="docs/import-template.mp4" width="600" autoplay loop muted></video>
 
 ### Executing a Workflow
-<img src="docs/execute-workflow.gif" alt="Execute Workflow Demo" width="600"/>
+<video src="docs/execute-workflow.mp4" width="600" autoplay loop muted></video>
 
 ## Useful Commands
 
