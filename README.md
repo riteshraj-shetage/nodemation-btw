@@ -1,8 +1,20 @@
 # n8n-compose
 
-Minimal setup to run n8n using Docker Compose on Ubuntu 24.04.
+Simple, reproducible setup for running n8n with Docker Compose on Ubuntu 24.04 — designed to make self‑hosting fast, portable, and production‑ready.
 
-## ✅ Prerequisites Checklist
+## Highlights
+
+- Minimal Docker Compose setup for n8n on Ubuntu 24.04
+- Modular bash scripts for setup, start/top, backup, restore, and update
+- Secure HTTPS with automatic SSL via Let's Encrypt
+- Easy domain + subdomain configuration through `.env`
+- One‑time owner account setup for admin access
+- Lightweight, reproducible, and production‑ready workflow automation
+- Portable deployments with backup and restore support
+
+---
+
+## Prerequisites Checklist
 
 - [ ] A Linux server (Ubuntu 24.04 recommended) — cloud VM or local machine  
   _Example: 2+ vCPUs, 4+ GB RAM, 30+ GB SSD_  
@@ -16,12 +28,14 @@ Minimal setup to run n8n using Docker Compose on Ubuntu 24.04.
 
 - [ ] SSH access to the server
 
+---
+
 ## Step-by-Step Installation
 
-### 1. Connect to Your EC2 Instance
+### 1. Connect to Your Instance
 
 ```bash
-ssh -i your-key.pem ubuntu@<your-ec2-public-ip>
+ssh -i your-key.pem ubuntu@<your-server-public-ip>
 ```
 
 ### 2. Clone the Repository
@@ -40,7 +54,6 @@ bash scripts/setup-n8n.sh
 > **Note:** The setup script adds your user to the `docker` group.  
 > You must log out and back in (or run `newgrp docker`) before continuing,  
 > otherwise you may see `permission denied` errors when running Docker commands.
-
 
 ### 4. Configure Your Environment
 
@@ -69,7 +82,17 @@ Open your browser and go to:
 https://<SUBDOMAIN>.<DOMAIN_NAME>
 ```
 
-## Demo
+### 7. First-Time Login
+
+After starting n8n for the first time, you’ll be prompted to create the owner account by entering:  
+**Email · First name · Last name · Password**
+
+Once submitted, you’ll be redirected to the n8n dashboard.  
+_(This setup step only appears once — it initializes your admin account for the instance.)_
+
+---
+
+## Usage Examples
 
 ### Importing a Template
 <img src="docs/import-template.gif" alt="Import Template Demo" width="600"/>
@@ -77,19 +100,30 @@ https://<SUBDOMAIN>.<DOMAIN_NAME>
 ### Executing a Workflow
 <img src="docs/execute-workflow.gif" alt="Execute Workflow Demo" width="600"/>
 
+---
 
 ## Useful Commands
 
 ```bash
+# Setup (initial deployment)
+bash scripts/setup-n8n.sh
+
 # Start
-docker compose up -d
+bash scripts/start-n8n.sh
 
 # Stop
-docker compose down
+bash scripts/stop-n8n.sh
 
-# Logs
-docker compose logs -f
+# Backup
+bash scripts/backup-n8n.sh
+
+# Restore
+bash scripts/restore-n8n.sh
 
 # Update
-docker compose pull && docker compose up -d
+bash scripts/update-n8n.sh
 ```
+
+---
+For more details, see the official n8n Docker Compose guide:  
+[https://docs.n8n.io/hosting/installation/server-setups/docker-compose/](https://docs.n8n.io/hosting/installation/server-setups/docker-compose/)
