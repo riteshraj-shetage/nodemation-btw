@@ -32,4 +32,4 @@ fi
 
 mkdir -p "$PROJECT_DIR/local-files"
 
-echo "Setup complete.
+echo "Setup complete."
