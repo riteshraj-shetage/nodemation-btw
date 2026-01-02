@@ -5,10 +5,8 @@ Simple, reproducible setup for running n8n with Docker Compose on Ubuntu 24.04 �
 ## Highlights
 
 - Minimal Docker Compose setup for n8n on Ubuntu 24.04
-- Modular bash scripts for setup, start/top, backup, restore, and update
 - Secure HTTPS with automatic SSL via Let's Encrypt
 - Easy domain + subdomain configuration through `.env`
-- One‑time owner account setup for admin access
 - Lightweight, reproducible, and production‑ready workflow automation
 - Portable deployments with backup and restore support
 
