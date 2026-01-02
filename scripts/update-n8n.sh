@@ -7,6 +7,9 @@ PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 
 cd "$PROJECT_DIR"
 
+# Run backup before update
+bash scripts/backup-n8n.sh
+
 # Pull latest version
 docker compose pull
 
