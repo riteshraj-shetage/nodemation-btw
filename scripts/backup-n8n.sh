@@ -7,6 +7,9 @@ PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 
 cd "$PROJECT_DIR"
 
+# Stop n8n before backup
+docker compose down
+
 # Create backup directory
 BACKUP_DIR="$HOME/n8n-backups"
 mkdir -p "$BACKUP_DIR"
@@ -21,3 +24,6 @@ docker run --rm \
     -v "$BACKUP_DIR":/backup \
     ubuntu:24.04 \
     tar czf "/backup/n8n_backup_$TIMESTAMP.tar.gz" -C /data .
+
+# Restart n8n after backup
+docker compose up -d
