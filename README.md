@@ -2,12 +2,19 @@
 
 Minimal setup to run n8n using Docker Compose on Ubuntu 24.04.
 
-## Prerequisites Checklist
+## ✅ Prerequisites Checklist
 
-- [ ] AWS EC2 instance running Ubuntu 24.04 LTS
-- [ ] Security group with ports 80 and 443 open
-- [ ] Domain name with DNS A record pointing to your EC2 IP
-- [ ] SSH access to your EC2 instance
+- [ ] A Linux server (Ubuntu 24.04 recommended) — cloud VM or local machine  
+  _Example: 2+ vCPUs, 4+ GB RAM, 30+ GB SSD_  
+  *(See [Hostinger’s n8n VPS requirements](https://www.hostinger.com/tutorials/n8n-vps-requirements) for minimum and recommended specs)*
+
+- [ ] Firewall/security rules allowing ports **80** (HTTP) and **443** (HTTPS)  
+  i.e. inbound TCP rules for 80 and 443 enabled
+
+- [ ] A domain name with a DNS **A Record** pointing to your server’s public IP  
+  Example: `n8n.example.com → <your-server-ip>` | (here `n8n` is the subdomain/hostname)
+
+- [ ] SSH access to the server
 
 ## Step-by-Step Installation
 
