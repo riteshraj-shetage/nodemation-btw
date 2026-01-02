@@ -17,7 +17,7 @@ LATEST_BACKUP=$(ls -t ~/n8n-backups/n8n_backup_*.tar.gz | head -n 1)
 docker run --rm \
     -v n8n-compose_n8n_data:/data \
     -v ~/n8n-backups:/backup \
-    ubuntu:24.04 \
+    alpine \
     tar xzf "/backup/$(basename "$LATEST_BACKUP")" -C /data
 
 # Restart n8n after restore
