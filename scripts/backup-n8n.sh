@@ -22,7 +22,7 @@ BACKUP_FILE="$BACKUP_DIR/n8n_backup_$TIMESTAMP.tar.gz"
 docker run --rm \
     -v n8n-compose_n8n_data:/data \
     -v "$BACKUP_DIR":/backup \
-    ubuntu:24.04 \
+    alpine \
     tar czf "/backup/n8n_backup_$TIMESTAMP.tar.gz" -C /data .
 
 # Restart n8n after backup
