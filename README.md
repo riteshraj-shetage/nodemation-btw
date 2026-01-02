@@ -30,6 +30,11 @@ cd ~/n8n-compose
 bash scripts/setup-n8n.sh
 ```
 
+> **Note:** The setup script adds your user to the `docker` group.  
+> You must log out and back in (or run `newgrp docker`) before continuing,  
+> otherwise you may see `permission denied` errors when running Docker commands.
+
+
 ### 4. Configure Your Environment
 
 ```bash
