@@ -53,6 +53,7 @@ services:
     volumes:
       - n8n_data:/home/node/.n8n
       - ./local-files:/files
+      - ./backups:/backups
 
 volumes:
   n8n_data:
