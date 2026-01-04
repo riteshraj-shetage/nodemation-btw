@@ -31,5 +31,6 @@ if [ ! -f "$PROJECT_DIR/.env" ]; then
 fi
 
 mkdir -p "$PROJECT_DIR/local-files"
+mkdir -p "$PROJECT_DIR/backups"
 
 echo "Setup complete."
