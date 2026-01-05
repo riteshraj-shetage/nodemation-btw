@@ -23,7 +23,7 @@ docker run --rm \
     -v "$BACKUP_DIR":/backup \
     --user $(id -u):$(id -g) \
     alpine \
-    tar xzf "$BACKUP_DIR/$(basename "$LATEST_BACKUP")" -C /data
+    tar xzf "/backup/$(basename "$LATEST_BACKUP")" -C /data
 
 # Restart n8n
 docker compose up -d n8n
