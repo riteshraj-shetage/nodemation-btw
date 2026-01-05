@@ -103,24 +103,51 @@ _(This setup step only appears once — it initializes your admin account for th
 ## Useful Commands
 
 ```bash
-# Setup (initial deployment)
+# Run initial setup _(only once)_
 bash scripts/setup-n8n.sh
 
-# Start
+# Start the n8n services
 bash scripts/start-n8n.sh
 
-# Stop
+# Stop all running n8n services
 bash scripts/stop-n8n.sh
 
-# Backup
+# Create a backup of your n8n instance
 bash scripts/backup-n8n.sh
 
-# Restore
+# Restore n8n from a backup file
 bash scripts/restore-n8n.sh
 
-# Update
+# Update n8n to the latest version
 bash scripts/update-n8n.sh
 ```
+
+## Bonus Tip: Backup File Transfer with SFTP
+
+After creating a backup with `bash scripts/backup-n8n.sh`, you can easily download it from your server to your local machine using **SFTP**.
+
+```bash
+# first disconnect from your SSH session (return to your local terminal)
+exit
+
+# now start an SFTP session from your local machine
+sftp ubuntu@<your-server-public-ip>
+
+# navigate to the backups folder on the server
+cd n8n-compose/backups
+
+# list files sorted by time (newest first)
+ls -t
+
+# download the latest backup file
+get n8n_backup_00000000_000000.tar.gz
+
+# disconnect from the SFTP session
+exit
+```
+
+This will copy the selected backup file into your current local directory.  
+You can also use `get -r backups` to download the entire backups folder at once.
 
 ---
 For more details, see the official n8n Docker Compose guide:  
