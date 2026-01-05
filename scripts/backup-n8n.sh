@@ -16,16 +16,20 @@ BACKUP_FILE="$BACKUP_DIR/n8n_backup_$TIMESTAMP.tar.gz"
 
 # Backup n8n data volume (adjust volume name if needed)
 docker run --rm \
-    -v n8n-dcompose_n8n_data:/data \
+    -v n8n-compose_n8n_data:/data \
     -v "$BACKUP_DIR":/backup \
     --user $(id -u):$(id -g) \
     alpine \
-    tar czf "/backup/$(basename "$BACKUP_FILE")" -C /data .
+    tar czf "$BACKUP_DIR/$(basename "$BACKUP_FILE")" -C /data .
 
 # Backup confirmation
 echo "Backup ready: $BACKUP_FILE"
 
 # Restart n8n
 docker compose up -d n8n
+
+set -a
+source .env 
+set +a
 
 echo "n8n is starting at https://${SUBDOMAIN}.${DOMAIN_NAME}"
