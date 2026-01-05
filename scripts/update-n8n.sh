@@ -7,17 +7,25 @@ cd "$PROJECT_DIR"
 
 # Run backup before update
 bash scripts/backup-n8n.sh
-echo "Backup completed successfully."
 
-# Pull latest version
-docker compose pull n8n
+# Try update process
+if docker compose pull n8n && \
+   docker compose stop n8n && \
+   docker compose rm -f n8n && \
+   docker compose up -d n8n; then
 
-# Stop and remove old n8n container
-docker compose stop n8n
-docker compose rm -f n8n
+    # Clean up old images
+    docker image prune -f
 
-# Start updated n8n
-docker compose up -d n8n
+    # Load environment variables for URL
+    set -a
+    source .env
+    set +a
 
-# Clean up old images
-docker image prune -f
+    echo "Update complete. n8n is running with the latest image."
+    echo "n8n is starting at https://${SUBDOMAIN}.${DOMAIN_NAME}"
+
+else
+    echo "Update failed. Restoring from latest backup..."
+    bash scripts/restore-n8n.sh
+fi
