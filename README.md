@@ -127,7 +127,7 @@ bash scripts/update-n8n.sh
 After creating a backup with `bash scripts/backup-n8n.sh`, you can easily download it from your server to your local machine using **SFTP**.
 
 ```bash
-# first disconnect from your SSH session (return to your local terminal)
+# first disconnect from your SSH session
 exit
 
 # now start an SFTP session from your local machine
