@@ -8,7 +8,7 @@ cd "$PROJECT_DIR"
 # Stop only n8n service
 docker compose stop n8n
 
-BACKUP_DIR="$HOME/backups"
+BACKUP_DIR="$PROJECT_DIR/backups"
 mkdir -p "$BACKUP_DIR"
 
 TIMESTAMP=$(date +%Y%m%d_%H%M%S)
