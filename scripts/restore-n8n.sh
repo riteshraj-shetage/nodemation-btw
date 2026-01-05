@@ -17,7 +17,7 @@ fi
 
 # Restore backup into n8n data volume
 docker run --rm \
-    -v n8n-dcompose_n8n_data:/data \
+    -v n8n-compose_n8n_data:/data \
     -v ~/backups:/backup \
     --user $(id -u):$(id -g) \
     alpine \
