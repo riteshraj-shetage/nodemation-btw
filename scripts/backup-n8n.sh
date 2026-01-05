@@ -24,3 +24,6 @@ docker run --rm \
 
 # Restart n8n
 docker compose up -d n8n
+
+# Backup confirmation
+echo "Backup ready: $BACKUP_FILE"
