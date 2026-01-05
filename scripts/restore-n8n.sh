@@ -29,5 +29,6 @@ docker run --rm \
 docker compose up -d n8n
 
 # Feedback message
-echo "Restored backup: $(basename "$LATEST_BACKUP")"
+echo "Restored from backup: $(basename "$LATEST_BACKUP")"
 
+echo "n8n is starting at https://${SUBDOMAIN}.${DOMAIN_NAME}"
