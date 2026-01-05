@@ -8,8 +8,10 @@ cd "$PROJECT_DIR"
 # Stop only n8n service
 docker compose stop n8n
 
+BACKUP_DIR="$PROJECT_DIR/backups"
+
 # Pick the latest backup file
-LATEST_BACKUP=$(ls -t ~/backups/n8n_backup_*.tar.gz | head -n 1 || true)
+LATEST_BACKUP=$(ls -t "$BACKUP_DIR"/n8n_backup_*.tar.gz | head -n 1 || true)
 if [[ -z "$LATEST_BACKUP" ]]; then
   echo "No backup files found in ~/backups"
   exit 1
