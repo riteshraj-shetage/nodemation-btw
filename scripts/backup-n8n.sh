@@ -22,8 +22,10 @@ docker run --rm \
     alpine \
     tar czf "/backup/$(basename "$BACKUP_FILE")" -C /data .
 
+# Backup confirmation
+echo "Backup ready: $BACKUP_FILE"
+
 # Restart n8n
 docker compose up -d n8n
 
-# Backup confirmation
-echo "Backup ready: $BACKUP_FILE"
+echo "n8n is starting at https://${SUBDOMAIN}.${DOMAIN_NAME}"
