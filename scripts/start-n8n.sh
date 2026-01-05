@@ -13,6 +13,8 @@ set -a
 source .env
 set +a
 
+sudo timedatectl set-timezone "$GENERIC_TIMEZONE"
+
 [ -z "$DOMAIN_NAME" ] && { echo "Error: DOMAIN_NAME not set"; exit 1; }
 [ -z "$SUBDOMAIN" ] && { echo "Error: SUBDOMAIN not set"; exit 1; }
 [ -z "$SSL_EMAIL" ] && { echo "Error: SSL_EMAIL not set"; exit 1; }
