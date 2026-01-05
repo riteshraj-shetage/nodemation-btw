@@ -122,7 +122,7 @@ bash scripts/restore-n8n.sh
 bash scripts/update-n8n.sh
 ```
 
-## Bonus Tip: Backup File Transfer with SFTP
+## Backup File Transfer with SFTP
 
 After creating a backup with `bash scripts/backup-n8n.sh`, you can easily download it from your server to your local machine using **SFTP**.
 
