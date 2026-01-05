@@ -20,7 +20,7 @@ docker run --rm \
     -v "$BACKUP_DIR":/backup \
     --user $(id -u):$(id -g) \
     alpine \
-    tar czf "$BACKUP_DIR/$(basename "$BACKUP_FILE")" -C /data .
+    tar czf "/backup/$(basename "$BACKUP_FILE")" -C /data .
 
 # Backup confirmation
 echo "Backup ready: $BACKUP_FILE"
