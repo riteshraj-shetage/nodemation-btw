@@ -27,3 +27,7 @@ docker run --rm \
 
 # Restart n8n
 docker compose up -d n8n
+
+# Feedback message
+echo "Restored backup: $(basename "$LATEST_BACKUP")"
+
