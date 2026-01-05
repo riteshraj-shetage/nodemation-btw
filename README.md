@@ -93,10 +93,10 @@ _(This setup step only appears once — it initializes your admin account for th
 ## Usage Examples
 
 ### Importing a Template
-<img src="docs/import-template.gif" alt="Import Template Demo" width="600"/>
+[View demo](docs/import-template.gif)
 
 ### Executing a Workflow
-<img src="docs/execute-workflow.gif" alt="Execute Workflow Demo" width="600"/>
+[View demo](docs/execute-workflow.gif)
 
 ---
 
