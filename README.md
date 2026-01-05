@@ -103,7 +103,7 @@ _(This setup step only appears once — it initializes your admin account for th
 ## Useful Commands
 
 ```bash
-# Run initial setup _(only once)_
+# Run initial setup (only once)
 bash scripts/setup-n8n.sh
 
 # Start the n8n services
