@@ -15,7 +15,7 @@ Simple, reproducible setup for running `n8n with Docker Compose on Ubuntu 24.04`
 ## Prerequisites Checklist
 
 - [ ] A Linux server (Ubuntu 24.04 recommended) — cloud VM  
-  _Example: 2+ vCPUs, 4+ GB RAM, 30+ GB SSD_  
+  _Example: 2 vCPUs, 4 GB RAM, 30 GB SSD_  
   *(See [Hostinger’s n8n VPS requirements](https://www.hostinger.com/tutorials/n8n-vps-requirements) for minimum and recommended specs)*
 
 - [ ] Firewall/security rules allowing ports **80** (HTTP) and **443** (HTTPS)  
