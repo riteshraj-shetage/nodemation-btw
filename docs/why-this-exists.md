@@ -83,12 +83,6 @@ So they were hacking around it instead of solving it.
 
 That day, I couldn’t let it go.
 
-I’ve always had three rules when something gets into my head:
-
-1. Make it exist  
-2. Make it better  
-3. Release it when it’s a big deal  
-
 So I started building.
 
 Not “how to install n8n”.  
