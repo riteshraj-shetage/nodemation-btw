@@ -1,127 +1,126 @@
-# Why n8n-compose Exists
+# Why This Exists
 
-Self-hosting **n8n** should be simple — but in practice, it rarely is.
+This didn’t start as a project.  
+It started as confusion.
 
-Most available guides fall into one of two extremes:
+One day I kept seeing *n8n* everywhere — YouTube, LinkedIn, random posts.  
+Everyone seemed to be using it. Everyone was excited about it.
 
-- **Too basic** — `docker run n8n`  
-  No HTTPS, no persistence, no backups.
-- **Too complex** — Kubernetes, Helm charts, external databases  
-  Powerful, but far beyond what most people actually need.
+So I got curious.
 
-**n8n-compose exists to fill the gap between those two.**
+When I finally looked into it, I realized something strange:
+the software itself is free…  
+but actually *using it* isn’t.
 
-> A **secure, production-ready, self-hosted n8n stack** that can be deployed on any Ubuntu VPS in minutes — with HTTPS, persistence, and backups included by default.
+There were three real ways people were running n8n:
 
-It is designed for people who want **ownership, control, and portability** without DevOps complexity.
+- The official n8n Cloud — 14-day trial, then you pay  
+- Cloud VMs and hosted instances — n8n baked-in, expensive and locked-in  
+- Docker on localhost — good for devs, not for real use  
 
----
+And suddenly it made sense why everyone was talking about n8n,  
+but almost nobody really *owned* it.
 
-## The Problem This Solves
+The docs said *“self-hosted”*,  
+but when I opened them, I hit a wall.
 
-Running n8n in production requires more than just starting a container.
+Self-hosting n8n comes with real technical prerequisites.
 
-You need:
-- HTTPS for OAuth, webhooks, and browser security  
-- A persistent data store so workflows and credentials survive restarts  
-- A way to back up and restore everything  
-- A repeatable way to deploy on any server  
+It requires you to be comfortable with:
 
-Most tutorials ignore at least one of these — until something breaks.
+- Setting up and configuring servers and containers  
+- Managing application resources and scaling  
+- Securing servers and applications  
+- Installing, configuring, and maintaining n8n  
 
-n8n-compose solves all of them from day one.
+> Even n8n itself makes this clear.
 
----
+<img 
+  src="docs.n8n.io_hosting_installation_docker.png" 
+  alt="n8n self-hosting knowledge prerequisites" 
+  width="480"
+  height="auto"
+/>
 
-## What This Project Is
+They recommend self-hosting only for *expert users*, warning that mistakes can easily lead to:
+- Data loss  
+- Security vulnerabilities  
+- Downtime  
 
-n8n-compose is not just a Docker Compose file.
+If you aren’t experienced in managing servers, their official guidance is to use *n8n Cloud* instead.
 
-It is a **complete self-hosting system** that gives you:
+That’s when it became obvious:
 
-- A public, HTTPS-secured n8n instance  
-- A **SQLite-based persistent data store** (single-file database)  
-- Automatic TLS certificates via Let’s Encrypt  
-- One-command startup, updates, backups, and recovery  
-- A stack that can be moved between servers without downtime  
+It wasn’t simple.  
+It wasn’t welcoming.
+It wasn’t built for people who just wanted to *use* n8n.
 
-Everything is designed to behave like a **small SaaS backend**, not a demo.
+My brain quietly went:
+> “This isn’t meant for people like me.”
 
----
-
-## Why SQLite
-
-Instead of running a separate database service, this stack uses **SQLite**.
-
-This provides:
-- A **single database file** containing all workflows, credentials, and history  
-- Faster setup (no database container to manage)  
-- Easier backups and restores  
-- Better portability between servers  
-
-For small teams, SaaS backends, and automation platforms, SQLite offers the **best balance of simplicity and reliability**.
-
----
-
-## What This Project Is Not
-
-This repository is **not** meant for:
-
-- Local laptop experiments  
-- Windows-only setups  
-- Shared hosting environments 
-- One-click “try n8n” demos  
-
-It assumes:
-- You have a VPS  
-- You have a domain  
-- You want a real, long-running automation server  
+So I stopped.
 
 ---
 
-## The Philosophy
+Weeks later, I'm in the college and the guy sitting next to me started talking about n8n.  
+I asked him about it.
 
-This project follows three core principles:
+He told me:
+> “Yeah, we use the 14-day trial and then keep switching accounts.”
 
-### 1. Production by Default
-Everything is configured the way a real service would run:
-- HTTPS  
-- Persistent storage  
-- Secure public access  
+That’s when it clicked.
 
-Nothing is left as an “optional later step”.
+This wasn’t just my problem.  
+This was everyone’s problem.
 
----
+People wanted n8n.  
+They didn’t want:
+- Cloud lock-in  
+- Trial limits  
+- Or DevOps pain  
 
-### 2. Simple but Serious
-No Kubernetes.  
-No external databases.  
-No cloud lock-in.  
+So they were hacking around it instead of solving it.
 
-Just Docker Compose, Traefik, and SQLite — a stack that is small, fast, and dependable.
+That day, I couldn’t let it go.
 
----
+I’ve always had three rules when something gets into my head:
 
-### 3. Portability
-You own your stack.
+1. Make it exist  
+2. Make it better  
+3. Release it when it’s a big deal  
 
-You can:
-- Back it up  
-- Move it  
-- Restore it  
-- Bring it back online anywhere  
+So I started building.
 
-Your automations are never trapped inside one provider.
+Not “how to install n8n”.  
+Not another Docker tutorial.
 
----
+What I really wanted was:
+> A way for normal people to actually own their n8n.
 
-## Who This Was Built For
+Something you could:
+- Deploy on a VPS  
+- Put behind a real domain  
+- Have HTTPS  
+- Have persistence  
+- Have backups  
+- And not be scared it will break tomorrow  
 
-This stack is ideal for:
+That’s what this repo became.
 
-- Automation freelancers & agencies  
-- SaaS founders using n8n as a backend  
-- Developers who need private workflow automation  
-- Teams that don’t want to depend on cloud plans  
+`n8n-compose` is not about containers.
 
-If you want to run n8n as a **real service**, this project was built for you.
+It’s about making n8n:
+- Yours  
+- Portable  
+- Reliable  
+- And free in the way it was meant to be  
+
+So that someone can do:
+
+git clone -> bash setup -> bash start
+
+…and suddenly they’re not on a trial anymore.
+They’re not renting (n8n).
+They own their automation.
+
+That’s why this exists.
