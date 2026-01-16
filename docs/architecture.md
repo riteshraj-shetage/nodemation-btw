@@ -11,9 +11,9 @@ flowchart TB
         User
     end
 
-    subgraph Server["Linux Server (Ubuntu 24.04)"]
+    subgraph Server["Linux Server"]
         
-        subgraph Docker["Docker Compose Environment"]
+        subgraph Docker["Docker Compose"]
             
             Traefik["Traefik Container
             - HTTPS (Let's Encrypt)
@@ -26,7 +26,7 @@ flowchart TB
             - REST API
             - Webhooks
             - Workflow Engine
-            Port:  5678"]
+            Port:   5678"]
             
             Traefik -->|HTTP : 5678| N8N
             
