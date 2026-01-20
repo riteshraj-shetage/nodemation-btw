@@ -90,16 +90,6 @@ _(This setup step only appears once — it initializes your admin account for th
 
 ---
 
-## Usage Examples
-
-### Importing a Template
-[View demo](docs/import-template.gif)
-
-### Executing a Workflow
-[View demo](docs/execute-workflow.gif)
-
----
-
 ## Useful Commands
 
 ```bash
