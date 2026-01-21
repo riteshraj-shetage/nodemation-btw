@@ -87,7 +87,7 @@ https://<SUBDOMAIN>.<DOMAIN_NAME>
 After starting n8n for the first time, you’ll be prompted to create the owner account by entering:  
 **Email · First name · Last name · Password**
 
-![Set up owner account screen](docs/set-up-owner-account-screen.png)
+[Set up owner account screen](docs/set-up-owner-account-screen.png)
 
 Once submitted, you’ll be redirected to the n8n dashboard.  
 _(This setup step only appears once — it initializes your admin account for the instance.)_
